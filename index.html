@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sino 🎉</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LAYER 1: GLITTER + STARS BACKGROUND -->
+    <canvas id="glitterCanvas"></canvas>
+
+    <!-- LAYER 2: BEGIN SCREEN -->
+    <section id="beginStage" class="stage">
+        <button id="beginBtn" class="begin-btn">
+            <span class="begin-heart">💖</span>
+            <span class="begin-text">Tap to Begin</span>
+        </button>
+    </section>
+
+    <!-- LAYER 3: COUNTDOWN -->
+    <section id="countdown" class="stage hidden">
+        <div id="countdownNumber">3</div>
+    </section>
+
+    <!-- LAYER 4: MAIN STAGE -->
+    <section id="mainStage" class="stage hidden">
+
+        <div class="birthday-message">
+            <h1 class="birthday-title">Happy Birthday Sino</h1>
+            <p class="birthday-note">
+                <span id="typedNote"></span><span id="typeCursor" class="type-cursor">|</span>
+            </p>
+            <p class="note-emphasis-line">
+                <span class="note-emphasis">MAY IT BE ERROR FREE!</span>
+            </p>
+        </div>
+
+        <div class="photo-strip photo-strip-left">
+            <img src="images/photo1.jpg" alt="Sino 1" class="photo">
+            <img src="images/photo2.jpg" alt="Sino 2" class="photo">
+        </div>
+
+        <div class="photo-strip photo-strip-right">
+            <img src="images/photo3.jpg" alt="Sino 3" class="photo">
+            <img src="images/photo4.jpg" alt="Sino 4" class="photo">
+        </div>
+
+    </section>
+
+    <!-- CONFETTI CANVAS (on top of everything) -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

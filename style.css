@@ -1,0 +1,377 @@
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+    --burgundy:       #800020;
+    --burgundy-dark:  #4a0013;
+    --burgundy-light: #a80030;
+    --rose:           #ff007f;
+    --rose-light:     #ffc0cb;
+    --rose-soft:      #ffe4ec;
+    --champagne:      #f7e7ce;
+    --gold:           #e6c068;
+    --white-soft:     #fff5f7;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+body {
+    background: radial-gradient(circle at 50% 40%,
+                #1a0008 0%,
+                #0d0004 45%,
+                #000000 100%);
+    color: var(--white-soft);
+    position: relative;
+}
+
+/* ============================================
+   GLITTER CANVAS
+   ============================================ */
+#glitterCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ============================================
+   CONFETTI CANVAS
+   ============================================ */
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* ============================================
+   STAGE WRAPPER
+   ============================================ */
+.stage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   BEGIN BUTTON 💖
+   ============================================ */
+.begin-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 40px 60px;
+    background: rgba(128, 0, 32, 0.4);
+    border: 2px solid var(--gold);
+    border-radius: 24px;
+    color: var(--white-soft);
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    backdrop-filter: blur(8px);
+    box-shadow:
+        0 0 40px rgba(255, 0, 127, 0.4),
+        0 0 80px rgba(230, 192, 104, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: beginPulse 2.5s ease-in-out infinite;
+}
+
+.begin-btn:hover {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 60px rgba(255, 0, 127, 0.8),
+        0 0 120px rgba(230, 192, 104, 0.4);
+}
+
+.begin-btn:active {
+    transform: scale(0.98);
+}
+
+.begin-heart {
+    font-size: 4rem;
+    display: block;
+    animation: heartBeat 1.4s ease-in-out infinite;
+}
+
+.begin-text {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: var(--champagne);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+@keyframes beginPulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(255, 0, 127, 0.4), 0 0 80px rgba(230, 192, 104, 0.2); }
+    50%      { box-shadow: 0 0 60px rgba(255, 0, 127, 0.7), 0 0 120px rgba(230, 192, 104, 0.4); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    20%      { transform: scale(1.25); }
+    40%      { transform: scale(1); }
+    60%      { transform: scale(1.15); }
+    80%      { transform: scale(1); }
+}
+
+/* ============================================
+   COUNTDOWN
+   ============================================ */
+#countdownNumber {
+    font-size: 18rem;
+    font-weight: 900;
+    color: var(--rose-light);
+    font-family: 'Georgia', serif;
+    text-shadow:
+        0 0 20px var(--rose),
+        0 0 40px var(--rose),
+        0 0 80px var(--rose),
+        0 0 120px var(--rose),
+        0 0 180px var(--burgundy-light);
+    letter-spacing: 8px;
+    user-select: none;
+}
+
+#countdownNumber.tick {
+    animation: countdownTick 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes countdownTick {
+    0%   { opacity: 0; transform: scale(0.4); }
+    30%  { opacity: 1; transform: scale(1.25); }
+    55%  { opacity: 1; transform: scale(1); }
+    85%  { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* ============================================
+   BIRTHDAY MESSAGE
+   ============================================ */
+.birthday-message {
+    text-align: center;
+    padding: 0 20px;
+    max-width: 800px;
+    z-index: 10;
+    position: relative;
+    animation: fadeInUp 1.5s ease-out 0.4s both;
+}
+
+.birthday-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--rose-light);
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 20px var(--rose),
+        0 0 40px var(--rose),
+        0 0 60px var(--burgundy-light);
+    margin-bottom: 24px;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+.birthday-note {
+    font-size: 1.4rem;
+    color: var(--champagne);
+    line-height: 1.9;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    min-height: 3.6em;
+}
+
+/* Blinking cursor for typing effect */
+.type-cursor {
+    display: inline-block;
+    color: var(--gold);
+    font-weight: bold;
+    margin-left: 2px;
+    animation: blink 0.8s step-end infinite;
+}
+
+.type-cursor.done {
+    animation: none;
+    opacity: 0;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+.note-emphasis-line {
+    margin-top: 20px;
+}
+
+.note-emphasis {
+    display: inline-block;
+    font-weight: bold;
+    font-style: normal;
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 1.4rem;
+    text-shadow: 0 0 15px var(--gold);
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.note-emphasis.reveal {
+    animation: emphasisPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes emphasisPop {
+    0%   { opacity: 0; transform: scale(0.8); }
+    60%  { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================
+   PHOTO STRIPS — 2 LEFT, 2 RIGHT
+   ============================================ */
+.photo-strip {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 5;
+}
+
+.photo-strip-left { left: 25px; }
+.photo-strip-right { right: 25px; }
+
+.photo {
+    width: 220px;
+    height: 280px;
+    object-fit: cover;
+    border: 5px solid var(--gold);
+    border-radius: 14px;
+    box-shadow:
+        0 0 30px rgba(255, 0, 127, 0.7),
+        0 0 60px rgba(230, 192, 104, 0.35);
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-strip-left .photo  { transform: translateX(-80px); }
+.photo-strip-right .photo { transform: translateX(80px); }
+
+.photo-strip-left.reveal .photo {
+    animation: slideInPhotoLeft 0.8s ease-out forwards;
+}
+.photo-strip-left.reveal .photo:nth-child(1) { animation-delay: 0.1s; }
+.photo-strip-left.reveal .photo:nth-child(2) { animation-delay: 0.3s; }
+
+.photo-strip-right.reveal .photo {
+    animation: slideInPhotoRight 0.8s ease-out forwards;
+}
+.photo-strip-right.reveal .photo:nth-child(1) { animation-delay: 0.5s; }
+.photo-strip-right.reveal .photo:nth-child(2) { animation-delay: 0.7s; }
+
+.photo:hover {
+    transform: scale(1.06);
+    box-shadow:
+        0 0 40px rgba(255, 0, 127, 0.9),
+        0 0 70px rgba(230, 192, 104, 0.5);
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInPhotoLeft {
+    from { opacity: 0; transform: translateX(-80px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInPhotoRight {
+    from { opacity: 0; transform: translateX(80px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow:
+            0 0 20px var(--rose),
+            0 0 40px var(--rose),
+            0 0 60px var(--burgundy-light);
+    }
+    50% {
+        text-shadow:
+            0 0 30px var(--rose),
+            0 0 60px var(--rose),
+            0 0 90px var(--rose),
+            0 0 120px var(--burgundy-light);
+    }
+}
+
+/* ============================================
+   RESPONSIVE (mobile)
+   ============================================ */
+@media (max-width: 768px) {
+    #countdownNumber { font-size: 8rem; }
+    .birthday-title  { font-size: 2.2rem; }
+    .birthday-note   { font-size: 1rem; }
+    .note-emphasis   { font-size: 1rem; }
+
+    .begin-btn {
+        padding: 30px 40px;
+    }
+    .begin-heart { font-size: 3rem; }
+    .begin-text  { font-size: 1.1rem; }
+
+    .photo-strip {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 15px;
+    }
+
+    .photo-strip-left,
+    .photo-strip-right {
+        left: auto;
+        right: auto;
+    }
+
+    .photo {
+        width: 90px;
+        height: 115px;
+    }
+}
